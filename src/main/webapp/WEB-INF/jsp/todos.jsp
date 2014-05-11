@@ -1,6 +1,7 @@
 <!doctype html>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
@@ -25,23 +26,27 @@
     <div id="todo-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox">
-                </label>
-            </div>
+            <ul class="list-group">
+
+            <c:forEach var="todo" items="${todos}">
+                <li class="list-group-item" style="height: 50px">${todo.task}
+                    <a href="/delete-todo/${todo.id}" class="btn btn-danger btn-sm pull-right">Delete</a>
+                </li>
+            </c:forEach>
+
+            </ul>
 
         </div>
     </div>
 
     <div id="todo-form" class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
-            <form>
+            <form:form method="post" action="add-todo">
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" placeholder="Describe your todo">
+                    <input type="text" name="task" class="form-control input-lg text-center" placeholder="Describe your todo">
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Add</button>
-            </form>
+            </form:form>
         </div>
     </div>
 
