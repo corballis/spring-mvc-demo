@@ -41,9 +41,10 @@
 
     <div id="todo-form" class="row">
         <div class="col-sm-8 col-sm-offset-2 text-center">
-            <form:form method="post" action="add-todo">
+            <form:form modelAttribute="todo" method="post" action="add-todo">
+                <form:errors path="*" cssClass="errorblock" element="div" />
                 <div class="form-group">
-                    <input type="text" name="task" class="form-control input-lg text-center" placeholder="Describe your todo">
+                    <form:input path="task" id="task" class="form-control input-lg text-center" placeholder="Describe your todo" />
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Add</button>
             </form:form>

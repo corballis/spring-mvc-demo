@@ -1,10 +1,14 @@
 package hu.greencode.spring.demo.todo;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.UUID;
 
 public class Todo {
 
     private String id;
+
+    @NotEmpty
     private String task;
 
     public Todo() {
