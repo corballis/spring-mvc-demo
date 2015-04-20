@@ -29,10 +29,19 @@ public class SpringDemo {
     }
 
     @Bean(name = "todos")
-//    @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
-    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
+//    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 //    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Map<String, Todo> todos() {
         return new HashMap<String, Todo>();
     }
+
+      @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(new Locale("HU", "hu"));
+        return slr;
+
+    }
+
 }

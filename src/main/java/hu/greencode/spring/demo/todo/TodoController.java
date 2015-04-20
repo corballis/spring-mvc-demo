@@ -17,6 +17,9 @@ public class TodoController {
     @Autowired
     private TodoRepository todoRepository;
 
+    @Autowired
+    private TodoValidator validator;
+
     @RequestMapping("/")
     public String todoWelcome(Model model) {
         model.addAttribute("todos", todoRepository.findAll());
@@ -25,7 +28,9 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.POST)
-    public String addTodo(@Valid @ModelAttribute("todo") Todo todo, BindingResult bindingResult, Model model) {
+    public String addTodo(@ModelAttribute("todo") @Valid Todo todo, BindingResult bindingResult, Model model) {
+
+        validator.validate(todo, bindingResult);
 
         if (!bindingResult.hasErrors()) {
             todoRepository.save(todo);
