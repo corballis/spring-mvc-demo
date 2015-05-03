@@ -18,7 +18,7 @@ public class TodoController {
     private TodoRepository todoRepository;
 
     @Autowired
-    private TodoValidator validator;
+    private ToDoValidator validator;
 
     @RequestMapping("/")
     public String todoWelcome(Model model) {

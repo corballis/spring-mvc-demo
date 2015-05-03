@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public class TodoValidator implements Validator {
+public class ToDoValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
         return clazz.equals(Todo.class) ;
