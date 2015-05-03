@@ -4,6 +4,7 @@ import hu.greencode.spring.demo.todo.Todo;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
 @ComponentScan
 public class SpringDemo {
 

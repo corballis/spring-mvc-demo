@@ -3,12 +3,15 @@ package hu.greencode.spring.demo.greeting;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+
 @Controller
 @ResponseBody
 @RequestMapping(value = "/greeting")
 public class GreetingController {
 
     @RequestMapping("/hello")
+    @RolesAllowed("ROLE_USER")
     public String helloWorld() {
         return "hello world";
     }

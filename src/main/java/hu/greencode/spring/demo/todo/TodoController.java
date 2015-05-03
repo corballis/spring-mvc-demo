@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 @Controller
@@ -21,6 +22,7 @@ public class TodoController {
     private ToDoValidator validator;
 
     @RequestMapping("/")
+    @RolesAllowed("ROLE_USER")
     public String todoWelcome(Model model) {
         model.addAttribute("todos", todoRepository.findAll());
         model.addAttribute("todo", new Todo());
@@ -28,6 +30,7 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.POST)
+    @RolesAllowed("ROLE_ADMIN")
     public String addTodo(@ModelAttribute("todo") @Valid Todo todo, BindingResult bindingResult, Model model) {
 
         validator.validate(todo, bindingResult);
@@ -42,6 +45,7 @@ public class TodoController {
     }
 
     @RequestMapping("/delete-todo/{todoId}")
+    @RolesAllowed("ROLE_ADMIN")
     public String deleteTodo(@PathVariable("todoId") String id) {
         todoRepository.delete(id);
         return "redirect:/";

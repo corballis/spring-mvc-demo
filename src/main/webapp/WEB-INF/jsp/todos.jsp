@@ -21,6 +21,7 @@
 
     <div class="jumbotron text-center">
         <h1>Spring Todo Application</h1>
+        <a href="/logout">Log out</a>
     </div>
 
     <div id="todo-list" class="row">
@@ -47,6 +48,9 @@
                     <form:input path="task" id="task" class="form-control input-lg text-center" placeholder="Describe your todo" />
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                <input type="hidden"                        6
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
             </form:form>
         </div>
     </div>
