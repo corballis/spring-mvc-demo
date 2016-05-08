@@ -14,6 +14,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -29,10 +30,11 @@ public class SpringDemo {
     }
 
     @Bean(name = "todos")
-    @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
+//    @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
 //    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-//    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Map<String, Todo> todos() {
+        System.out.println("Todos bean has been created at " + new Date().toString());
         return new HashMap<String, Todo>();
     }
 
